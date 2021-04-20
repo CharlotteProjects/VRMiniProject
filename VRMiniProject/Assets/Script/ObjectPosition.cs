@@ -10,6 +10,7 @@ public class ObjectPosition : MonoBehaviour
     bool took = false;
     GameManager gameManager = null;
 
+
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
@@ -34,12 +35,12 @@ public class ObjectPosition : MonoBehaviour
 
     public void TookObject()
     {
-
+        StartCoroutine(_TookObject());
     }
 
     IEnumerator _TookObject()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
         took = true;
     }
 }
