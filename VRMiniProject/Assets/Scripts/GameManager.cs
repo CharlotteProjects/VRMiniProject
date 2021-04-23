@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
         "Step 1 :\nPlease choose the screwdriver and unscrew the screwd under the wing of airplane."
     };
 
+    [Header("---Platform---")]
+    public ElevatingPlatformController platformController = null;
 
 
     private void Start()
@@ -72,4 +74,13 @@ public class GameManager : MonoBehaviour
 
         }
     }
+
+    #region Control The Platform
+
+    public void PlatformUpDown(bool upDown)
+    {
+        platformController.UpDown(upDown);
+    }
+
+    #endregion
 }
