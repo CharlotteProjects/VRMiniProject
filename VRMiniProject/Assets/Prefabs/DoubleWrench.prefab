@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 3813525617257769519}
   m_Layer: 0
   m_Name: DoubleWrench
-  m_TagString: Untagged
+  m_TagString: Tools
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -194,8 +194,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.09604865, y: 0.016182423, z: 0.4474818}
-  m_Center: {x: 0.0009607971, y: 0.014824152, z: 0.010956369}
+  m_Size: {x: 0.09604865, y: 0.02421093, z: 0.46812636}
+  m_Center: {x: 0.0009607971, y: 0.0004878044, z: 0.009809464}
 --- !u!114 &6646615586617548074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -358,7 +358,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5882268678997388195, guid: 5c40a888773ea6b4d90434e6382c6239, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.015
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5882268678997388195, guid: 5c40a888773ea6b4d90434e6382c6239, type: 3}
       propertyPath: m_LocalPosition.z
