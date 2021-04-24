@@ -12,7 +12,7 @@ public class ElevatingPlatformController : MonoBehaviour
     public List<GameObject> platformObject_YGroup = new List<GameObject>();
 
     int upMaxTime = 3;
-    int downMaxTime = 5;
+    int downMaxTime = 8;
     int onClickNum = 0;
 
     void Start()

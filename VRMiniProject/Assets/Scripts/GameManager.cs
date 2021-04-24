@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class GameManager : MonoBehaviour
@@ -27,13 +28,60 @@ public class GameManager : MonoBehaviour
 
     [Header("---Platform---")]
     public ElevatingPlatformController platformController = null;
-
+    [Header("---UI---")]
+    public GameObject introObject = null;
+    public GameObject menuObject = null;
+    public Button closeButton = null;
+    //! false = close menu, true = show menu
+    bool menuButtonState = false;
 
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
         ShowTheIntro();
     }
+
+    #region Button Setting
+
+    public void MenuButtonOnClick()
+    {
+        audioSource.PlayOneShot(soundList[3]);
+
+        if (menuButtonState)
+        {
+            menuButtonState = false;
+
+            ColorBlock colorBlock = closeButton.colors;
+            colorBlock.normalColor = new Color(1, 135f / 255f, 135f / 255f, 1);
+            colorBlock.highlightedColor = Color.red;
+            colorBlock.pressedColor = new Color(150f / 255f, 0, 0, 1);
+            colorBlock.selectedColor = new Color(1, 135f / 255f, 135f / 255f, 1);
+            closeButton.colors = colorBlock;
+
+            closeButton.gameObject.transform.GetComponentInChildren<TMP_Text>().text = "Close Menu";
+
+            introObject.SetActive(true);
+            menuObject.SetActive(true);
+        }
+        else
+        {
+            menuButtonState = true;
+
+            ColorBlock colorBlock = closeButton.colors;
+            colorBlock.normalColor = new Color(135f / 255f, 1, 135f / 255f, 1);
+            colorBlock.highlightedColor = Color.green;
+            colorBlock.pressedColor = new Color(0, 150f / 255f, 0, 1);
+            colorBlock.selectedColor = new Color(135f / 255f, 1, 135f / 255f, 1);
+            closeButton.colors = colorBlock;
+
+            closeButton.gameObject.transform.GetComponentInChildren<TMP_Text>().text = "Show Menu";
+
+            introObject.SetActive(false);
+            menuObject.SetActive(false);
+        }
+    }
+
+    #endregion
 
     #region The Tool reset spwan setting
 
