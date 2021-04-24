@@ -14,11 +14,15 @@ public class GameManager : MonoBehaviour
     ProgramStep programStep = ProgramStep.Step1;
     AudioSource audioSource = null;
 
+    #region Tools
+
     [Header("---Spawn Object---")]
     public List<Transform> spawnPosition = new List<Transform>();
     public List<GameObject> prefabsList = new List<GameObject>();
     public List<AudioClip> soundList = new List<AudioClip>();
     public DeleteTools tableTrigger = null;
+
+    #endregion
 
     [Header("---Intro---")]
     public TMP_Text introText = null;
@@ -26,8 +30,19 @@ public class GameManager : MonoBehaviour
         "Step 1 :\nPlease choose the screwdriver and unscrew the screwd under the wing of airplane."
     };
 
+    #region Platform
+
     [Header("---Platform---")]
+    float movementValue = 0;
+    float rotateValue = 0;
+    bool upDownCoolDown = false;
+    public GameObject Platform = null;
     public ElevatingPlatformController platformController = null;
+
+    #endregion
+
+    #region UI
+
     [Header("---UI---")]
     public GameObject introObject = null;
     public GameObject menuObject = null;
@@ -35,10 +50,32 @@ public class GameManager : MonoBehaviour
     //! false = close menu, true = show menu
     bool menuButtonState = false;
 
+    #endregion
+
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
         ShowTheIntro();
+    }
+    private void Update()
+    {
+        if (movementValue >= 0.85f)
+        {
+            Platform.transform.Translate(Vector3.left * Time.deltaTime * 2);
+        }
+        else if (movementValue <= 0.15f)
+        {
+            Platform.transform.Translate(Vector3.right * Time.deltaTime * 2);
+        }
+
+        if (rotateValue >= 0.85f)
+        {
+            Platform.transform.Rotate(Vector3.up * Time.deltaTime * 4);
+        }
+        else if (rotateValue <= 0.15f)
+        {
+            Platform.transform.Rotate(Vector3.down * Time.deltaTime * 4);
+        }
     }
 
     #region Button Setting
@@ -125,14 +162,37 @@ public class GameManager : MonoBehaviour
 
     #region Control The Platform
 
+    ///<summary> CD is 1 second</summary>
     public void PlatformUpDown(bool upDown)
     {
-        if (upDown)
-            audioSource.PlayOneShot(soundList[1]);
-        else
-            audioSource.PlayOneShot(soundList[2]);
+        if (!upDownCoolDown)
+        {
+            StartCoroutine(PlatformCoolDown());
+            if (upDown)
+                audioSource.PlayOneShot(soundList[1]);
+            else
+                audioSource.PlayOneShot(soundList[2]);
 
-        platformController.UpDown(upDown);
+            platformController.UpDown(upDown);
+        }
+    }
+
+    public void SetPlatformFrontBack(float value)
+    {
+        movementValue = value;
+    }
+
+    public void SetPlatformRightLeft(float value)
+    {
+        rotateValue = value;
+    }
+
+    ///<summary> CD is 1 second</summary>
+    IEnumerator PlatformCoolDown()
+    {
+        upDownCoolDown = true;
+        yield return new WaitForSeconds(1);
+        upDownCoolDown = false;
     }
 
     #endregion
