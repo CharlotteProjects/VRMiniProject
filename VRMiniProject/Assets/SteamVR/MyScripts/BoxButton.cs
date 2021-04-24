@@ -6,6 +6,8 @@ using Valve.VR.InteractionSystem.Sample;
 
 public class BoxButton : ButtonEffect
 {
+    public Color baseColor;
+
     public override void OnButtonDown(Hand fromHand)
     {
         if (Application.isEditor || Debug.isDebugBuild)
@@ -13,7 +15,8 @@ public class BoxButton : ButtonEffect
 
         GameObject.Find("GameManager").gameObject.SendMessage("ResetTools");
 
-        base.OnButtonDown(fromHand);
+        ColorSelf(new Color(255f / 255f, 200f / 255f, 0));
+        fromHand.TriggerHapticPulse(1000);
     }
 
     public override void OnButtonUp(Hand fromHand)
@@ -21,7 +24,7 @@ public class BoxButton : ButtonEffect
         if (Application.isEditor || Debug.isDebugBuild)
             Debug.Log("You button up.");
 
-        base.OnButtonUp(fromHand);
+        ColorSelf(baseColor);
     }
 
     public void ClickUpButton(Hand fromHand)
@@ -31,6 +34,18 @@ public class BoxButton : ButtonEffect
 
         GameObject.Find("GameManager").gameObject.SendMessage("PlatformUpDown", true);
 
-        base.OnButtonDown(fromHand);
+        ColorSelf(Color.yellow);
+        fromHand.TriggerHapticPulse(1000);
+    }
+
+    public void ClickDownButton(Hand fromHand)
+    {
+        if (Application.isEditor || Debug.isDebugBuild)
+            Debug.Log("You onClick the 3D button for down your ElevatingPlatform.");
+
+        GameObject.Find("GameManager").gameObject.SendMessage("PlatformUpDown", false);
+
+        ColorSelf(new Color(255f / 255f, 200f / 255f, 0));
+        fromHand.TriggerHapticPulse(1000);
     }
 }

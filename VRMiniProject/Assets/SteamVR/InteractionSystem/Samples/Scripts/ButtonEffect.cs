@@ -20,7 +20,7 @@ namespace Valve.VR.InteractionSystem.Sample
             ColorSelf(Color.red);
         }
 
-        private void ColorSelf(Color newColor)
+        protected void ColorSelf(Color newColor)
         {
             Renderer[] renderers = this.GetComponentsInChildren<Renderer>();
             for (int rendererIndex = 0; rendererIndex < renderers.Length; rendererIndex++)
