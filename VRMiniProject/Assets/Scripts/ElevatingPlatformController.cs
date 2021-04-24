@@ -8,10 +8,10 @@ public class ElevatingPlatformController : MonoBehaviour
     public List<GameObject> L_iron = new List<GameObject>();
 
 
-    public List<GameObject> platform3D = new List<GameObject>();
-    public GameObject platformObject = null;
+    public List<GameObject> platformObject_ZGroup = new List<GameObject>();
+    public List<GameObject> platformObject_YGroup = new List<GameObject>();
 
-    int upMaxTime = 5;
+    int upMaxTime = 3;
     int downMaxTime = 5;
     int onClickNum = 0;
 
@@ -48,17 +48,22 @@ public class ElevatingPlatformController : MonoBehaviour
         //! limit the onClick Time
         if (onClickNum >= -downMaxTime && onClickNum <= upMaxTime)
         {
+            //! Control Rotation
             for (int i = 0; i < R_iron.Count; i++)
             {
                 R_iron[i].transform.Rotate(new Vector3(0, RorativeValue, 0));
                 L_iron[i].transform.Rotate(new Vector3(0, -RorativeValue, 0));
             }
 
-            for (int i = 0; i < platform3D.Count; i++)
+            //! Control up / down
+            for (int i = 0; i < platformObject_ZGroup.Count; i++)
             {
-                platform3D[i].transform.Translate(new Vector3(0, 0, RorativeValue / 20f));
+                platformObject_ZGroup[i].transform.Translate(new Vector3(0, 0, RorativeValue / 20f));
             }
-            platformObject.transform.Translate(new Vector3(0, RorativeValue / 20f, 0));
+            for (int i = 0; i < platformObject_YGroup.Count; i++)
+            {
+                platformObject_YGroup[i].transform.Translate(new Vector3(0, RorativeValue / 20f, 0));
+            }
         }
     }
 }

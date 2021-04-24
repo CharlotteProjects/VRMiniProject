@@ -79,6 +79,11 @@ public class GameManager : MonoBehaviour
 
     public void PlatformUpDown(bool upDown)
     {
+        if (upDown)
+            audioSource.PlayOneShot(soundList[1]);
+        else
+            audioSource.PlayOneShot(soundList[2]);
+
         platformController.UpDown(upDown);
     }
 
