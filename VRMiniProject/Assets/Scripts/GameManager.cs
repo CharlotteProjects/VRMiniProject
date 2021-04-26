@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour
     bool upDownCoolDown = false;
     public GameObject Platform = null;
     public ElevatingPlatformController platformController = null;
+    public bool stopMove = false;
 
     #endregion
 
@@ -66,7 +67,7 @@ public class GameManager : MonoBehaviour
         {
             Platform.transform.Translate(Vector3.left * Time.deltaTime * 2);
         }
-        else if (movementValue <= 0.15f)
+        else if (movementValue <= 0.15f && !stopMove)
         {
             Platform.transform.Translate(Vector3.right * Time.deltaTime * 2);
         }
