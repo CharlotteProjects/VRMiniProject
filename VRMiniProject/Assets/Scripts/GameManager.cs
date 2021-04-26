@@ -27,7 +27,10 @@ public class GameManager : MonoBehaviour
     [Header("---Intro---")]
     public TMP_Text introText = null;
     List<string> introList = new List<string>{
-        "Step 1 :\nPlease choose the screwdriver and unscrew the screwd under the wing of airplane."
+        "Step 1 :\n Please chose the Tool and remove the screw on the wing"
+        "Step 2:\n Please remove the panel"
+        "Step 3:\n Please chose the Tool and remove the scrwe of the slap support"
+        "Stap3:\n Please remove the Slap"
     };
 
     #region Platform
