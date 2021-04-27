@@ -203,7 +203,8 @@ public class GameManager : MonoBehaviour
     public void SpawnToolsAgain(int typeNumber)
     {
         audioSource.PlayOneShot(soundList[0]);
-        Instantiate(prefabsList[typeNumber], spawnPosition[typeNumber]);
+        GameObject tools = Instantiate(prefabsList[typeNumber], spawnPosition[typeNumber]);
+        tools.name = prefabsList[typeNumber].name;
     }
 
     public void ResetTools()
@@ -222,7 +223,10 @@ public class GameManager : MonoBehaviour
         tableTrigger.delObject = false;
 
         for (int i = 0; i < prefabsList.Count; i++)
-            Instantiate(prefabsList[i], spawnPosition[i]);
+        {
+            GameObject tools = Instantiate(prefabsList[i], spawnPosition[i]);
+            tools.name = prefabsList[i].name;
+        }
     }
 
     #endregion
@@ -289,6 +293,7 @@ public class GameManager : MonoBehaviour
             if (Application.isEditor || Debug.isDebugBuild)
                 Debug.Log($"Start Training ! You are training count screws are {traininngCount}, total Screw is {totalScrewCount}");
 
+            introObjectAir.SetActive(true);
             easyButton.interactable = false;
             hardButton.interactable = false;
             startTraining = true;

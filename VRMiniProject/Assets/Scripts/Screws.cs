@@ -10,6 +10,8 @@ public class Screws : MonoBehaviour
     void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        if (gameManager == null)
+            Debug.LogError("Can not find Game Mangager");
     }
 
     private void OnTriggerEnter(Collider other)
@@ -19,6 +21,7 @@ public class Screws : MonoBehaviour
 
         if (other.gameObject.name.Equals(myTargerTools))
         {
+            Debug.Log("Unscrewing");
             unscrew = StartCoroutine(Unscrew());
         }
     }
