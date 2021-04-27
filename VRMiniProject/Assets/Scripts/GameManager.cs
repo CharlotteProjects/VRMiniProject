@@ -222,7 +222,7 @@ public class GameManager : MonoBehaviour
 
         tableTrigger.delObject = false;
 
-        for (int i = 0; i < prefabsList.Count; i++)
+        for (int i = 0; i < prefabsList.Count-1; i++)
         {
             GameObject tools = Instantiate(prefabsList[i], spawnPosition[i]);
             tools.name = prefabsList[i].name;
