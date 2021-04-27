@@ -11,6 +11,7 @@ public class PlatformTrigger : MonoBehaviour
         if (other.gameObject.CompareTag("Airplane"))
         {
             gameManager.stopMove = true;
+            gameManager.ShowTheIntro(1);
         }
     }
 

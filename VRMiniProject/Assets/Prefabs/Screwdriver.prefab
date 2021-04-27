@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 8713886939478313051}
   - component: {fileID: 4962174695701297827}
   - component: {fileID: 5034952948294803575}
-  - component: {fileID: 1938440090178943264}
   - component: {fileID: 2031594661942536416}
+  - component: {fileID: 7051328386247248444}
   m_Layer: 0
   m_Name: Screwdriver
   m_TagString: Tools
@@ -158,20 +158,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactable: {fileID: 0}
---- !u!136 &1938440090178943264
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2269334673423443259}
-  m_Material: {fileID: 13400000, guid: db55370b5e718fc4cb58bf7e0064e7f1, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.03160093
-  m_Height: 0.47
-  m_Direction: 2
-  m_Center: {x: 0.0001148805, y: 0.0033333749, z: 0}
 --- !u!114 &2031594661942536416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,6 +171,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myNumber: 2
+--- !u!65 &7051328386247248444
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2269334673423443259}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.09395313, y: 0.08915901, z: 0.45998764}
+  m_Center: {x: -0.0011296272, y: 0.0011301041, z: -0.0011310577}
 --- !u!1001 &7560656007293382286
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -235,6 +234,14 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: dd5107fe3ffea854f99fe34e5e5a71f2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: dd5107fe3ffea854f99fe34e5e5a71f2, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: dd5107fe3ffea854f99fe34e5e5a71f2, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: dd5107fe3ffea854f99fe34e5e5a71f2, type: 3}
       propertyPath: m_Name

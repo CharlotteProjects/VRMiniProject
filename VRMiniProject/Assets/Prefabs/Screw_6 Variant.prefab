@@ -1,5 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!65 &6100580579518625722
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3122302598635153640}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.03416925, y: 0.057050854, z: 0.038659178}
+  m_Center: {x: 0.0009186653, y: -0.0010412782, z: 0.0013162296}
 --- !u!205 &4930653477149367804
 LODGroup:
   m_ObjectHideFlags: 0
@@ -27,6 +40,35 @@ LODGroup:
     renderers:
     - renderer: {fileID: 6296140249026007526}
   m_Enabled: 1
+--- !u!114 &8342292181356874864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3122302598635153640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8df8b61987fe3246b3466a7834f9a1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myTargerTools: DoubleWrench
+--- !u!54 &4611067765582169100
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3122302598635153640}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &2852410764925359545
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36,15 +78,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 474efc0e1fc4d834fbb00743adb017ad, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.31758535
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 474efc0e1fc4d834fbb00743adb017ad, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.3651285
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 474efc0e1fc4d834fbb00743adb017ad, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.4314
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 474efc0e1fc4d834fbb00743adb017ad, type: 3}
       propertyPath: m_LocalRotation.x
@@ -77,6 +119,18 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 474efc0e1fc4d834fbb00743adb017ad, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 474efc0e1fc4d834fbb00743adb017ad, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 474efc0e1fc4d834fbb00743adb017ad, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 474efc0e1fc4d834fbb00743adb017ad, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: -5784309168767674006, guid: 474efc0e1fc4d834fbb00743adb017ad, type: 3}
       propertyPath: m_Materials.Array.data[0]

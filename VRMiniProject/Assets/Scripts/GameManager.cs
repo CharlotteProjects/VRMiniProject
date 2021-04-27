@@ -28,10 +28,11 @@ public class GameManager : MonoBehaviour
     public TMP_Text introText = null;
     public TMP_Text introTextAir = null;
     List<string> introList = new List<string>{
-        "Step 1 :\nPlease choose the Tool and move the platfrom side the wing",
+        "Step 1 :\nPlease choose the Tool and move the platform side the wing",
         "Step 2 :\nThen You can teleport to the up area of the wing.",
-        "Step 3 :\nPlease chose the Tool and remove the scrwe of the slap support",
-        "Stap 4 :\nPlease remove the Slap."
+        "Step 3 :\nUnscrew the all screws",
+        "Step 4 :\nFinish unscrew the all screws, then need to choose the double hand wrench, unscrew them.",
+        "Step 5 :\nThen remove the support rock.",
     };
 
     #region Platform
@@ -40,6 +41,7 @@ public class GameManager : MonoBehaviour
     float movementValue = 0;
     float rotateValue = 0;
     bool upDownCoolDown = false;
+    public float superPlarformSpeed = 2f;
     public GameObject Platform = null;
     public ElevatingPlatformController platformController = null;
     [System.NonSerialized] public bool stopMove = false;
@@ -65,8 +67,14 @@ public class GameManager : MonoBehaviour
 
     #region Training Content
 
+    int easyScrewsCount = 4;
+    int hardScrewCount = 45;
+    int traininngCount = 0;
+    int nowUnscrewCount = 0;
+    bool startTraining = false;
     public GameObject easyModeScrewsGroup = null;
     public GameObject hardModeScrewsGroup = null;
+    public GameObject wingBase = null;
 
     #endregion
 
@@ -82,11 +90,11 @@ public class GameManager : MonoBehaviour
     {
         if (movementValue >= 0.85f)
         {
-            Platform.transform.Translate(Vector3.left * Time.deltaTime * 2);
+            Platform.transform.Translate(Vector3.left * Time.deltaTime * superPlarformSpeed);
         }
         else if (movementValue <= 0.15f && !stopMove)
         {
-            Platform.transform.Translate(Vector3.right * Time.deltaTime * 2);
+            Platform.transform.Translate(Vector3.right * Time.deltaTime * superPlarformSpeed);
         }
 
         if (rotateValue >= 0.85f)
@@ -108,6 +116,7 @@ public class GameManager : MonoBehaviour
     {
         easyButton.colors = ButtonColorToGreen(easyButton.colors);
         hardButton.colors = ButtonColorToRed(hardButton.colors);
+        traininngCount = easyScrewsCount;
     }
 
     public void MenuButtonOnClick()
@@ -144,6 +153,7 @@ public class GameManager : MonoBehaviour
         hardButton.colors = ButtonColorToRed(hardButton.colors);
         easyModeScrewsGroup.SetActive(true);
         hardModeScrewsGroup.SetActive(false);
+        traininngCount = easyScrewsCount;
     }
 
     public void hardButtonOnClick()
@@ -153,6 +163,7 @@ public class GameManager : MonoBehaviour
         hardButton.colors = ButtonColorToGreen(hardButton.colors);
         easyModeScrewsGroup.SetActive(false);
         hardModeScrewsGroup.SetActive(true);
+        traininngCount = hardScrewCount;
     }
 
     ColorBlock ButtonColorToRed(ColorBlock colorBlock)
@@ -206,7 +217,7 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
-    void ShowTheIntro(int num)
+    public void ShowTheIntro(int num)
     {
         switch (programStep)
         {
@@ -257,6 +268,44 @@ public class GameManager : MonoBehaviour
 
     #region Training Content
 
+    public void Unscrews()
+    {
+        if (Application.isEditor || Debug.isDebugBuild)
+            Debug.Log("Unscrws !");
+
+        if (!startTraining)
+        {
+            if (Application.isEditor || Debug.isDebugBuild)
+                Debug.Log($"Start Training ! You are training count screws are {traininngCount}");
+
+            easyButton.interactable = false;
+            hardButton.interactable = false;
+            startTraining = true;
+            ShowTheIntro(2);
+        }
+
+        audioSource.PlayOneShot(soundList[0]);
+        nowUnscrewCount++;
+
+        if (nowUnscrewCount >= traininngCount)
+        {
+            if (Application.isEditor || Debug.isDebugBuild)
+                Debug.Log("Unscrew the all screws, then go to next step !");
+
+            ShowTheIntro(3);
+            wingBase.SetActive(false);
+        }
+    }
 
     #endregion
 }
+
+#region  Some Bugs List
+/*
+
+1,
+platformTrigger.cs just for stop platfromfront side
+When user use back the move, then will hit the airplane.
+
+*/
+#endregion
