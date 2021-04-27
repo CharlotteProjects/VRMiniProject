@@ -26,11 +26,12 @@ public class GameManager : MonoBehaviour
 
     [Header("---Intro---")]
     public TMP_Text introText = null;
+    public TMP_Text introTextAir = null;
     List<string> introList = new List<string>{
-        "Step 1 :\n Please chose the Tool and remove the screw on the wing",
-        "Step 2 :\n Please remove the panel",
-        "Step 3 :\n Please chose the Tool and remove the scrwe of the slap support",
-        "Stap 4 :\n Please remove the Slap."
+        "Step 1 :\nPlease choose the Tool and move the platfrom side the wing",
+        "Step 2 :\nThen You can teleport to the up area of the wing.",
+        "Step 3 :\nPlease chose the Tool and remove the scrwe of the slap support",
+        "Stap 4 :\nPlease remove the Slap."
     };
 
     #region Platform
@@ -41,7 +42,7 @@ public class GameManager : MonoBehaviour
     bool upDownCoolDown = false;
     public GameObject Platform = null;
     public ElevatingPlatformController platformController = null;
-    public bool stopMove = false;
+    [System.NonSerialized] public bool stopMove = false;
 
     #endregion
 
@@ -51,15 +52,31 @@ public class GameManager : MonoBehaviour
     public GameObject introObject = null;
     public GameObject menuObject = null;
     public Button closeButton = null;
+    public Button easyButton = null;
+    public Button hardButton = null;
+
     //! false = close menu, true = show menu
     bool menuButtonState = false;
+
+    [Header("---AirplaneUI---")]
+    public GameObject introObjectAir = null;
+
+    #endregion
+
+    #region Training Content
+
+    public GameObject easyModeScrewsGroup = null;
+    public GameObject hardModeScrewsGroup = null;
 
     #endregion
 
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        ShowTheIntro();
+
+        Initilization_Button();
+
+        ShowTheIntro(0);
     }
     private void Update()
     {
@@ -83,6 +100,15 @@ public class GameManager : MonoBehaviour
     }
 
     #region Button Setting
+    /*
+    All button are active by UIElement.cs
+    */
+
+    void Initilization_Button()
+    {
+        easyButton.colors = ButtonColorToGreen(easyButton.colors);
+        hardButton.colors = ButtonColorToRed(hardButton.colors);
+    }
 
     public void MenuButtonOnClick()
     {
@@ -92,13 +118,7 @@ public class GameManager : MonoBehaviour
         {
             menuButtonState = false;
 
-            ColorBlock colorBlock = closeButton.colors;
-            colorBlock.normalColor = new Color(1, 135f / 255f, 135f / 255f, 1);
-            colorBlock.highlightedColor = Color.red;
-            colorBlock.pressedColor = new Color(150f / 255f, 0, 0, 1);
-            colorBlock.selectedColor = new Color(1, 135f / 255f, 135f / 255f, 1);
-            closeButton.colors = colorBlock;
-
+            closeButton.colors = ButtonColorToRed(closeButton.colors);
             closeButton.gameObject.transform.GetComponentInChildren<TMP_Text>().text = "Close Menu";
 
             introObject.SetActive(true);
@@ -108,18 +128,51 @@ public class GameManager : MonoBehaviour
         {
             menuButtonState = true;
 
-            ColorBlock colorBlock = closeButton.colors;
-            colorBlock.normalColor = new Color(135f / 255f, 1, 135f / 255f, 1);
-            colorBlock.highlightedColor = Color.green;
-            colorBlock.pressedColor = new Color(0, 150f / 255f, 0, 1);
-            colorBlock.selectedColor = new Color(135f / 255f, 1, 135f / 255f, 1);
-            closeButton.colors = colorBlock;
-
+            closeButton.colors = ButtonColorToGreen(closeButton.colors);
             closeButton.gameObject.transform.GetComponentInChildren<TMP_Text>().text = "Show Menu";
 
             introObject.SetActive(false);
             menuObject.SetActive(false);
+            introObjectAir.SetActive(false);
         }
+    }
+
+    public void easyButtonOnClick()
+    {
+        audioSource.PlayOneShot(soundList[3]);
+        easyButton.colors = ButtonColorToGreen(easyButton.colors);
+        hardButton.colors = ButtonColorToRed(hardButton.colors);
+        easyModeScrewsGroup.SetActive(true);
+        hardModeScrewsGroup.SetActive(false);
+    }
+
+    public void hardButtonOnClick()
+    {
+        audioSource.PlayOneShot(soundList[3]);
+        easyButton.colors = ButtonColorToRed(easyButton.colors);
+        hardButton.colors = ButtonColorToGreen(hardButton.colors);
+        easyModeScrewsGroup.SetActive(false);
+        hardModeScrewsGroup.SetActive(true);
+    }
+
+    ColorBlock ButtonColorToRed(ColorBlock colorBlock)
+    {
+        colorBlock.normalColor = new Color(1, 135f / 255f, 135f / 255f, 1);
+        colorBlock.highlightedColor = Color.red;
+        colorBlock.pressedColor = new Color(150f / 255f, 0, 0, 1);
+        colorBlock.selectedColor = new Color(1, 135f / 255f, 135f / 255f, 1);
+
+        return colorBlock;
+    }
+
+    ColorBlock ButtonColorToGreen(ColorBlock colorBlock)
+    {
+        colorBlock.normalColor = new Color(135f / 255f, 1, 135f / 255f, 1);
+        colorBlock.highlightedColor = Color.green;
+        colorBlock.pressedColor = new Color(0, 150f / 255f, 0, 1);
+        colorBlock.selectedColor = new Color(135f / 255f, 1, 135f / 255f, 1);
+
+        return colorBlock;
     }
 
     #endregion
@@ -153,15 +206,16 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
-    void ShowTheIntro()
+    void ShowTheIntro(int num)
     {
         switch (programStep)
         {
             case ProgramStep.Step1:
-                introText.text = introList[0];
+                introText.text = introList[num];
+                introTextAir.text = introList[num];
                 break;
-
         }
+
     }
 
     #region Control The Platform
@@ -198,6 +252,11 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1);
         upDownCoolDown = false;
     }
+
+    #endregion
+
+    #region Training Content
+
 
     #endregion
 }
