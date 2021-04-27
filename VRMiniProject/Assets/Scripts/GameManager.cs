@@ -33,6 +33,8 @@ public class GameManager : MonoBehaviour
         "Step 3 :\nUnscrew the all screws",
         "Step 4 :\nFinish unscrew the all screws, then need to choose the double hand wrench, unscrew them.",
         "Step 5 :\nThen remove the support rock.",
+        "Step 6 :\nReplace the new support rock.",
+        "Congratulations !\nYou finished the maintain training !\nYou Can play again or play some feature.",
     };
 
     #region Platform
@@ -70,17 +72,25 @@ public class GameManager : MonoBehaviour
     int easyScrewsCount = 4;
     int hardScrewCount = 45;
     int traininngCount = 0;
+    int totalScrewCount = 0;
     int nowUnscrewCount = 0;
     bool startTraining = false;
+    bool takeoutOld = false;
     public GameObject easyModeScrewsGroup = null;
     public GameObject hardModeScrewsGroup = null;
     public GameObject wingBase = null;
+    public GameObject baseSupportRock = null;
+    public GameObject oldSupportRock = null;
+    public GameObject SupportRockTrigger = null;
 
     #endregion
 
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
+
+        SupportRockTrigger.SetActive(false);
+        baseSupportRock.SetActive(false);
 
         Initilization_Button();
 
@@ -275,8 +285,9 @@ public class GameManager : MonoBehaviour
 
         if (!startTraining)
         {
+            totalScrewCount = traininngCount + 2;
             if (Application.isEditor || Debug.isDebugBuild)
-                Debug.Log($"Start Training ! You are training count screws are {traininngCount}");
+                Debug.Log($"Start Training ! You are training count screws are {traininngCount}, total Screw is {totalScrewCount}");
 
             easyButton.interactable = false;
             hardButton.interactable = false;
@@ -295,6 +306,41 @@ public class GameManager : MonoBehaviour
             ShowTheIntro(3);
             wingBase.SetActive(false);
         }
+
+        if (nowUnscrewCount >= totalScrewCount)
+        {
+            ShowTheIntro(4);
+            oldSupportRock.GetComponent<BoxCollider>().enabled = true;
+        }
+
+        if (Application.isEditor || Debug.isDebugBuild)
+            Debug.Log($"Now unscrew is {nowUnscrewCount}");
+    }
+
+    public void TakeoutOldSupportRock()
+    {
+        if (nowUnscrewCount >= totalScrewCount)
+        {
+            if (Application.isEditor || Debug.isDebugBuild)
+                Debug.Log("You take the old supportRock!");
+
+            if (!takeoutOld)
+            {
+                takeoutOld = true;
+                oldSupportRock.GetComponent<Rigidbody>().useGravity = true;
+                oldSupportRock.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+                SupportRockTrigger.SetActive(true);
+                ShowTheIntro(5);
+            }
+        }
+    }
+
+    public void FinishGame()
+    {
+        audioSource.PlayOneShot(soundList[4]);
+        ShowTheIntro(6);
+        SupportRockTrigger.SetActive(false);
+        baseSupportRock.SetActive(true);
     }
 
     #endregion
