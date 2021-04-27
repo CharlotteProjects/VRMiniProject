@@ -2989,6 +2989,7 @@ GameObject:
   - component: {fileID: 548141389}
   - component: {fileID: 548141392}
   - component: {fileID: 548141391}
+  - component: {fileID: 548141395}
   m_Layer: 5
   m_Name: ButtonHard
   m_TagString: Untagged
@@ -3176,6 +3177,19 @@ RectTransform:
   m_AnchoredPosition: {x: 25.7, y: 7.499981}
   m_SizeDelta: {x: 46.1, y: 12}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!65 &548141395
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 548141388}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 43.207443, y: 9.122467, z: 1}
+  m_Center: {x: -0.4354551, y: -0.12998581, z: 0.0000021983171}
 --- !u!1001 &593695858
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3712,6 +3726,7 @@ GameObject:
   - component: {fileID: 671849658}
   - component: {fileID: 671849655}
   - component: {fileID: 671849654}
+  - component: {fileID: 671849659}
   m_Layer: 5
   m_Name: ButtonEasy
   m_TagString: Untagged
@@ -3899,6 +3914,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!65 &671849659
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 671849652}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 43.22423, y: 9.992266, z: 1}
+  m_Center: {x: -0.3486961, y: 0.03197193, z: 0.0000014800199}
 --- !u!1 &685462168
 GameObject:
   m_ObjectHideFlags: 0
@@ -8033,63 +8061,6 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!1001 &1236948550
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1920179891}
-    m_Modifications:
-    - target: {fileID: 2269334673423443259, guid: 5c3006dfb6f3bad4b9282ae035831784, type: 3}
-      propertyPath: m_Name
-      value: Screwdriver
-      objectReference: {fileID: 0}
-    - target: {fileID: 2578276062221859779, guid: 5c3006dfb6f3bad4b9282ae035831784, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 5.99
-      objectReference: {fileID: 0}
-    - target: {fileID: 2578276062221859779, guid: 5c3006dfb6f3bad4b9282ae035831784, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.664
-      objectReference: {fileID: 0}
-    - target: {fileID: 2578276062221859779, guid: 5c3006dfb6f3bad4b9282ae035831784, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.606
-      objectReference: {fileID: 0}
-    - target: {fileID: 2578276062221859779, guid: 5c3006dfb6f3bad4b9282ae035831784, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2578276062221859779, guid: 5c3006dfb6f3bad4b9282ae035831784, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2578276062221859779, guid: 5c3006dfb6f3bad4b9282ae035831784, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2578276062221859779, guid: 5c3006dfb6f3bad4b9282ae035831784, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2578276062221859779, guid: 5c3006dfb6f3bad4b9282ae035831784, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2578276062221859779, guid: 5c3006dfb6f3bad4b9282ae035831784, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2578276062221859779, guid: 5c3006dfb6f3bad4b9282ae035831784, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2578276062221859779, guid: 5c3006dfb6f3bad4b9282ae035831784, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 5c3006dfb6f3bad4b9282ae035831784, type: 3}
 --- !u!1001 &1243882935
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9818,7 +9789,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1557227233}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 12.208, y: 5.12, z: -37.711}
+  m_LocalPosition: {x: 11.396, y: 5.12, z: -39.101}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6453351767266112188}
@@ -11525,11 +11496,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3027962436367142676, guid: 1bdcc54a7fedcd649b0fadb68138c500, type: 3}
   m_PrefabInstance: {fileID: 1833057390}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1838662460 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2578276062221859779, guid: 5c3006dfb6f3bad4b9282ae035831784, type: 3}
-  m_PrefabInstance: {fileID: 1236948550}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1855131491
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11941,7 +11907,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1779464160}
-  - {fileID: 1838662460}
   m_Father: {fileID: 266758141}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12760,6 +12725,7 @@ GameObject:
   - component: {fileID: 2091578824}
   - component: {fileID: 2091578823}
   - component: {fileID: 2091578822}
+  - component: {fileID: 2091578827}
   m_Layer: 5
   m_Name: ButtonClose
   m_TagString: Untagged
@@ -12947,6 +12913,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2091578820}
   m_CullTransparentMesh: 0
+--- !u!65 &2091578827
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2091578820}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 93.87324, y: 9.565067, z: 1}
+  m_Center: {x: 0.881584, y: -0.65755844, z: -0.0000047748863}
 --- !u!1 &2101785332
 GameObject:
   m_ObjectHideFlags: 0
